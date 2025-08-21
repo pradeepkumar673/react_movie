@@ -1,6 +1,7 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import React, { useContext } from "react";
 import { WatchlistContext } from "../context/WatchlistContext";
+import { FaStar } from "react-icons/fa";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
