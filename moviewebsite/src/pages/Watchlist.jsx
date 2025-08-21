@@ -1,6 +1,11 @@
 import GeneFilter from "../Components/GeneFilter"
+import { WatchlistContext } from "../context/WatchlistContext"
+import Cards from "../Components/cards"
+import React, { useEffect, useState } from "react";
+
 
 const Watchlist = () => {
+    const { watchlist } = useContext(WatchlistContext);
     return (
         <div className="watchlist_container p-4 pt-16">
             <input

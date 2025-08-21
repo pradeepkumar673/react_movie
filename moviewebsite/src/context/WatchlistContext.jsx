@@ -1,21 +1,30 @@
 import React from 'react'
 import { createContext } from 'react';
-const WatchlistContext = React.createContext();
+export const WatchlistContext = React.createContext();
 
 const toogleWatchlist = (film) => {
-    const index = watchlist.indexOf(film);
-    if (index > -1) {
-        watchlist.splice(index, 1);
+    const index = watchlist.findIndex((f) => f.id === film.id);
+    if (index ===-1) {
+        setWatchlist([...watchlist, film]);
     }
     else {
-        watchlist.push(film);
+        setWatchlist([...watchlist.slice(0, index), ...watchlist.slice(index + 1)]);
     }
 }
-export const WatchlistProvider = () => {
+export const WatchlistProvider = (props) => {
     const [watchlist, setWatchlist] = React.useState([]);
+    const toogleWatchlist = (film) => {
+        const index = watchlist.findIndex((f) => f.id === film.id);
+        if (index === -1) {
+            setWatchlist([...watchlist, film]);
+        } else {
+            setWatchlist([...watchlist.slice(0, index), ...watchlist.slice(index + 1)]);
+        }
+    };
     return (
-        <WatchlistContext.Provider value={[watchlist, setWatchlist]}>
+        <WatchlistContext.Provider value={{ watchlist, setWatchlist, toogleWatchlist }}>
             {props.children}
         </WatchlistContext.Provider>
-    )
-}
+    );
+};
+export default WatchlistProvider

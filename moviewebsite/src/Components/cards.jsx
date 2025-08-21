@@ -1,9 +1,13 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { WatchlistContext } from "../context/WatchlistContext";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function Cards({ film }) {
+    const { toogleWatchlist, watchlist } = useContext(WatchlistContext);
+    const isInWatchlist = watchlist.some(f => f.id === film.id);
+
     return (
         <div className="bg-[#6f111a] shadow-lg relative overflow-hidden border-2 border-[#000000] rounded-lg p-4 w-auto hover:scale-95 transition-transform duration-300">
             <img
@@ -19,8 +23,12 @@ function Cards({ film }) {
                 <p className="text-sm text-gray-500">Language: {film.original_language}</p>
                 <p className="text-sm text-gray-500">Popularity: {film.popularity}</p>
             </div>
-            <button className="absolute top-4 right-4 text-xl">
-                {1 !== 1 ? <FaHeart /> : <FaRegHeart />}
+            <button
+                onClick={() => toogleWatchlist(film)}
+                className="absolute bottom-4 right-4 text-3xl text-white"
+                aria-label="Toggle Watchlist"
+            >
+                {isInWatchlist ? <FaHeart /> : <FaRegHeart />}
             </button>
         </div>
     );
