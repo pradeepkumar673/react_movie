@@ -5,10 +5,11 @@ import React, { useEffect, useState } from "react";
 const Home = () => {
     const [films, setFilms] = useState([]);
     useEffect(() => {
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=e92f39b1bbc9f0b69ce7fdc6e6e7bc8e")
+        fetch(`https://api.themoviedb.org/3/movie/popular?page=${2}&api_key=e92f39b1bbc9f0b69ce7fdc6e6e7bc8e`)
             .then((res) => res.json())
-            .then((data) => setFilms(data.results)); 
-    }, []); 
+            .then((data) => setFilms(data.results));
+    }, []);
+
     return (
         <div className="home_container p-4 pt-16">
             <input
@@ -17,7 +18,7 @@ const Home = () => {
                 className="px-3 py-1 rounded-xl w-1/3 md:w-1/2 lg:w-1/3 border-2 border-[#000000]
         bg-[#6f111a] opacity-85 backdrop-blur-2xl shadow-lg fixed top-16 
         left-1/2 transform -translate-x-1/2
-        hover:opacity-100 transition-opacity duration-75 z-30 text-white"
+        hover:opacity-100  z-30 text-white hover:scale-105 transition-transform duration-200  "
             />
 
             <div className="movies_container mt-20 ">
