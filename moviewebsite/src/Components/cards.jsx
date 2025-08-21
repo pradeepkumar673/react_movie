@@ -1,7 +1,6 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import React, { useState } from "react";
 
-// TMDB image base URL
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
 
 function Cards({ film }) {
